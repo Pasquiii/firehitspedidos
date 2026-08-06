@@ -192,6 +192,7 @@ header h1 span {
   width: 100%;
   height: 150px;
   object-fit: contain;
+  object-position: center;
   background: var(--bg-card);
   display: flex;
   align-items: center;
@@ -984,15 +985,28 @@ header h1 span {
     flex-direction: column;
     align-items: stretch;
     text-align: center;
+    padding: 1.5rem 1rem 0.75rem;
   }
   .header-left {
     justify-content: center;
+  }
+  header h1 {
+    font-size: 2.1rem;
+    margin: 0.35rem 0 0;
+    letter-spacing: 0.02em;
+  }
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 0.5rem;
   }
   .grid {
     grid-template-columns: 1fr;
   }
   .card-img {
-    height: 120px;
+    height: 180px;
+    padding: 1rem;
+    margin: 0 auto;
   }
   .modal {
     padding: 1.5rem;
