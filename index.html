@@ -1706,7 +1706,7 @@ header h1 span {
   </div>
 </div>
 
-<div class="toast show" id="toast" role="alert" aria-live="assertive">Producto agregado</div>
+<div class="toast" id="toast" role="alert" aria-live="assertive">Producto agregado</div>
 
 <button class="cart-fab" id="cartFab" aria-label="Abrir carrito">🛒 <span class="cart-count" id="cartCount" style="display: none;">0</span></button>
 
@@ -1822,7 +1822,7 @@ let products = loadProducts() || [
     "name": "Mega Brave Booster Box (Versión Coreana)",
     "category": "Booster Box",
     "lang": "Coreano",
-    "price": "150",
+    "price": "75",
     "desc": "30 paquetes por caja, 5 tarjetas por paquete",
     "image": "https://cdn.phototourl.com/member/2026-07-14-954e7f7b-1285-4083-b3f0-4459f05ce01d.jpg",
     "imageName": "2026-07-14-954e7f7b-1285-4083-b3f0-4459f05ce01d.jpg"
@@ -1923,7 +1923,7 @@ let products = loadProducts() || [
     "category": "Blister",
     "lang": "Español",
     "price": "55",
-    "desc": "1 promocional de Larry's Komala; 1 moneda Pokémon con Larry; 2 paquetes de Ascended Heroes",
+    "desc": "2 two packs blister.1 Larry two pack blister y 1 Erika two pack blister ",
     "image": "https://cdn.phototourl.com/member/2026-07-14-f44aa989-5d63-4050-a8d7-20d7f40546de.jpg",
     "imageName": "2026-07-14-f44aa989-5d63-4050-a8d7-20d7f40546de.jpg"
   },
@@ -2205,6 +2205,8 @@ let products = loadProducts() || [
   const filterCategory = document.getElementById('filterCategory');
   const filterLang = document.getElementById('filterLang');
   const toast = document.getElementById('toast');
+  toast.classList.remove('show');
+  toast._timer = null;
   const statTotal = document.getElementById('statTotal');
   const statCategories = document.getElementById('statCategories');
   const statShowing = document.getElementById('statShowing');
