@@ -1,0 +1,2631 @@
+﻿<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fire Hits TCG - Catálogo</title>
+<style>
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-card: #121212;
+  --bg-card-hover: #1c1c1c;
+  --bg-input: #121212;
+  --border: #2c2c2c;
+  --border-focus: #ff8c00;
+  --text-primary: #f0f0f0;
+  --text-secondary: #a5a5a5;
+  --text-muted: #6b6b6b;
+  --accent: #ff8c00;
+  --accent-hover: #e67a00;
+  --success: #1f8a4c;
+  --success-hover: #166b3a;
+  --danger: #ff4d4d;
+  --danger-hover: #cc3b3b;
+  --warning: #ff8c00;
+  --warning-hover: #e67a00;
+  --badge-lang-bg: #1f1f1f;
+  --badge-lang-text: #d4d4d4;
+  --badge-price-bg: #3a2410;
+  --badge-price-text: #ffa333;
+  --header-gradient: linear-gradient(135deg, #0a0a0a, #181818);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --shadow: 0 8px 24px rgba(0,0,0,0.5);
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+header {
+  background: var(--header-gradient);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header .logo {
+  height: 50px;
+  width: auto;
+  border-radius: var(--radius);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+header h1 span {
+  color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  font-family: var(--font);
+}
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--bg-card-hover); }
+.btn-success { background: var(--success); color: #fff; }
+.btn-success:hover { background: var(--success-hover); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: var(--danger-hover); }
+.btn-warning { background: var(--warning); color: #0a0a0a; }
+.btn-warning:hover { background: var(--warning-hover); }
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  flex: 1;
+  min-width: 120px;
+}
+
+.stat-card h3 {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-card p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0.25rem;
+}
+
+.filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.filters select,
+.filters input {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-family: var(--font);
+}
+
+.filters select:focus,
+.filters input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+
+.filters label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  object-position: center;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: 0.5rem;
+}
+
+.card-body { padding: 1rem; }
+
+.card-category {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0.25rem 0 0.5rem;
+  color: #fff;
+}
+
+.card-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.badge-lang {
+  background: var(--badge-lang-bg);
+  color: var(--badge-lang-text);
+}
+
+.badge-price {
+  background: var(--badge-price-bg);
+  color: var(--badge-price-text);
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: #999;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-actions .btn {
+  flex: 1;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.card-actions .btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border: 1px solid var(--border);
+}
+
+.modal h2 {
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: var(--font);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-group .error {
+  color: var(--accent);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.form-group input.invalid,
+.form-group select.invalid {
+  border-color: var(--accent);
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.form-group input[type="file"] {
+  padding: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.form-group input[type="file"]::file-selector-button {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  font-family: var(--font);
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+  background: var(--bg-card-hover);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+}
+
+.empty-state h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+}
+
+.admin-panel {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--success);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  background: var(--danger);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 4rem 1.5rem 3rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(255, 140, 0, 0.35), transparent 60%),
+    radial-gradient(ellipse at 85% 120%, rgba(255, 140, 0, 0.18), transparent 50%);
+  pointer-events: none;
+}
+
+.hero h2 {
+  position: relative;
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 22px rgba(255, 140, 0, 0.5));
+}
+
+.hero h2 .hero-fire {
+  background: linear-gradient(135deg, #ffc066, var(--accent) 55%, #ff9d00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero h2 .hero-white {
+  color: #fff;
+}
+
+.hero-sub {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  line-height: 1.6;
+  color: #cdcdd0;
+}
+
+.hero-sub strong { color: var(--accent); }
+
+.hero-badges {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.hero-badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ========== SECCIÓN PASOS ========== */
+.steps-section { margin: 0 0 1rem; }
+
+.section-title {
+  text-align: center;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.section-title span { color: var(--accent); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent);
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(255, 140, 0, 0.4);
+}
+
+.step-card h3 {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.step-card p {
+  font-size: 0.85rem;
+  color: #999;
+  line-height: 1.5;
+}
+
+/* ========== ENVÍO GRATIS ========== */
+.free-shipping {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.95), rgba(230, 122, 0, 0.95));
+  border: 1px solid #ffa733;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.3);
+  animation: pulse-banner 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-banner {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+
+.free-shipping h3 {
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  color: #1a1a1a;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.free-shipping p {
+  color: #2b2000;
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* ========== ENTREGA FINAL ========== */
+.final-delivery {
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+}
+
+.final-delivery h3 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.final-delivery p {
+  color: #999;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ========== CONTACTO ========== */
+.contact-row { text-align: center; margin: 1.5rem 0 2.5rem; }
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25d366;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.85rem 1.6rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.contact-btn:hover {
+  transform: translateY(-2px);
+  background: #1ebe5b;
+}
+
+/* ========== REDES / BOTÓN ADMIN ========== */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.social-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: #25d366;
+  color: #25d366;
+}
+
+.whatsapp-float {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: #1ebe5b;
+}
+
+.admin-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  opacity: 0.35;
+  transition: opacity 0.3s;
+}
+
+.admin-footer:hover { opacity: 1; }
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2.5rem 1.5rem 3.5rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, transparent, rgba(255, 140, 0, 0.07));
+}
+
+.site-footer .btn-big {
+  font-size: 1.1rem;
+  padding: 0.9rem 2.5rem;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.35);
+}
+
+.site-footer .footer-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.admin-tools {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hidden { display: none !important; }
+
+.admin-link {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all 0.2s;
+}
+
+.admin-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.admin-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  font-family: var(--font);
+}
+
+.admin-btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.02);
+}
+
+/* ========== CARRITO ========== */
+.btn-cart { background: var(--accent); color: #0a0a0a; font-weight: 700; }
+.btn-cart:hover { background: var(--accent-hover); }
+
+.cart-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 900;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.5);
+  transition: transform 0.2s;
+}
+
+.cart-fab:hover { transform: scale(1.1); }
+
+.cart-fab .cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #fff;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.cart-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1100;
+}
+
+.cart-overlay.active { display: block; }
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -430px;
+  width: min(430px, 100%);
+  height: 100vh;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+}
+
+.cart-drawer.active { right: 0; }
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-header h2 { color: #fff; font-size: 1.1rem; }
+
+.cart-close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.cart-close:hover { color: var(--accent); }
+
+.cart-items { flex: 1; overflow-y: auto; padding: 0.5rem 1.5rem; }
+
+.cart-empty { text-align: center; color: var(--text-muted); padding: 3rem 1rem; }
+.cart-empty p { font-size: 0.9rem; line-height: 1.6; }
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-item-info { flex: 1; min-width: 0; }
+
+.cart-item-name {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-item-price { color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.15rem; }
+
+.qty-controls { display: flex; align-items: center; gap: 0.45rem; }
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.qty-num { min-width: 22px; text-align: center; font-weight: 700; color: #fff; font-size: 0.9rem; }
+
+.cart-item-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cart-item-remove:hover { color: var(--danger); }
+
+.cart-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); }
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.cart-total span:last-child { color: var(--accent); font-size: 1.3rem; }
+
+.cart-checkout {
+  width: 100%;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.9rem;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  font-family: var(--font);
+}
+
+.cart-checkout:hover { background: #1ebe5b; transform: translateY(-2px); }
+.cart-checkout:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.cart-clear {
+  width: 100%;
+  margin-top: 0.5rem;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+.cart-clear:hover { color: var(--danger); border-color: var(--danger); }
+
+@media (max-width: 600px) {
+  .hero { padding: 2.5rem 1rem 2rem; }
+  .steps { grid-template-columns: 1fr; }
+  .cart-fab { bottom: 1rem; right: 1rem; width: 56px; height: 56px; }
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 1.5rem 1rem 0.75rem;
+  }
+  .header-left {
+    justify-content: center;
+  }
+  header h1 {
+    font-size: 2.1rem;
+    margin: 0.35rem 0 0;
+    letter-spacing: 0.02em;
+  }
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card-img {
+    height: 180px;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+  .modal {
+    padding: 1.5rem;
+  }
+  .admin-panel.show {
+    justify-content: center;
+  }
+}
+</style>
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style></head>
+<body>
+
+<header>
+  <div class="header-left">
+    <img class="logo" src="logo.png" alt="Fire Hits TCG Logo">
+    <h1>Fire <span>Hits</span> TCG</h1>
+  </div>
+<div class="actions">
+    <a class="whatsapp-float" href="https://wa.me/584220408963" target="_blank" rel="noopener" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path></svg></a>
+  </div>
+</header>
+
+<div class="hero">
+  <h2 class="hero-title"><span class="hero-white">ORDENA TUS</span> <span class="hero-fire">FIRE HITS</span></h2>
+  <p class="hero-sub">El servicio de pedidos de producto sellado de <strong>TCG más candela de Venezuela</strong>. Productos <strong>100% originales</strong> en japonés, español, coreano y chino.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">🇯🇵 Japón</span>
+    <span class="hero-badge">🇪🇸 España</span>
+    <span class="hero-badge">🇰🇷 Corea</span>
+    <span class="hero-badge">🇨🇳 China</span>
+    <span class="hero-badge">🔥 100% Originales</span>
+  </div>
+</div>
+
+<div class="container">
+  <section class="steps-section">
+    <h2 class="section-title">¿Cómo <span>funciona el servicio?</span></h2>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div><h3>Elige tus productos</h3><p>Selecciona tus cartas favoritas y realiza tu pedido a través de nuestra página web.</p></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div><h3>Cancela tu pedido</h3><p>Abona el monto correspondiente para asegurar tu solicitud.</p></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div><h3>Procesamos al instante</h3><p>Procesamos y ordenamos tu pedido de inmediato.</p></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div><h3>Ronda de Pedidos</h3><p>1era ronda de pedidos del 1 al 15 de cada mes · 2da ronda de pedidos del 16 al 30/31 de cada mes.</p></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div><h3>Entregas en Venezuela</h3><p>Los productos son enviados desde Estados Unidos y tardan entre 5 y 10 días en llegar. Aproximadamente en 3 semanas luego del cierre de la ronda de pedidos en la que ordenes.</p></div>
+      </div>
+    </div>
+
+    <div class="free-shipping">
+      <h3>🚚 ¡EL ENVÍO INTERNACIONAL ES GRATIS!</h3>
+      <p>Todos los pedidos llegan a Venezuela sin costo adicional.</p>
+    </div>
+
+    <div class="final-delivery">
+      <h3>📦 Entrega final</h3>
+      <p>En cuanto los recibamos, nos pondremos en contacto contigo para coordinar la entrega.</p>
+    </div>
+
+    <div class="contact-row">
+      <a class="contact-btn" href="https://wa.me/584220408963" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path></svg> Pedir por WhatsApp</a>
+    </div>
+  </section>
+
+  <div class="stats" id="stats" role="status" aria-live="polite">
+    <div class="stat-card"><h3>Total</h3><p id="statTotal">27</p></div>
+    <div class="stat-card"><h3>Categorías</h3><p id="statCategories">6</p></div>
+    <div class="stat-card"><h3>Mostrando</h3><p id="statShowing">27</p></div>
+  </div>
+
+  <div class="filters">
+    <label for="searchInput">Buscar:
+      <input type="text" id="searchInput" placeholder="Nombre..." aria-label="Buscar producto por nombre">
+    </label>
+    <label for="filterCategory">Categoría:
+      <select id="filterCategory" aria-label="Filtrar por categoría"><option value="">Todas</option><option value="Blind Box">Blind Box</option><option value="Blister">Blister</option><option value="Booster Box">Booster Box</option><option value="Bundle">Bundle</option><option value="Colección Especial">Colección Especial</option><option value="Mini Latas">Mini Latas</option></select>
+    </label>
+    <label for="filterLang">Idioma:
+      <select id="filterLang" aria-label="Filtrar por idioma"><option value="">Todos</option><option value="Chino">Chino</option><option value="Coreano">Coreano</option><option value="Español">Español</option><option value="Japonés">Japonés</option></select>
+    </label>
+  </div>
+
+  <div class="grid" id="catalogGrid" role="list" aria-label="Lista de productos">
+        <div class="card" role="listitem" data-id="2" tabindex="0" aria-label="Mega Dream EX Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-b6c4a203-67eb-4c5e-8adb-293133b91c40.jpg" alt="Mega Dream EX Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Mega Dream EX Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Japonés</span>
+              <span class="badge badge-price">$110</span>
+            </div>
+            <div class="card-desc">10 packs por caja, 10 cartas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="2">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="3" tabindex="0" aria-label="Abyss Eye Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-7e3715dd-b112-4f2c-a450-b8fda756f609.jpg" alt="Abyss Eye Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Abyss Eye Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Japonés</span>
+              <span class="badge badge-price">$145</span>
+            </div>
+            <div class="card-desc">30 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="3">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="4" tabindex="0" aria-label="Ninja Spinner Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-3c49f6f2-5dee-4a40-a0c4-4c59362de788.jpg" alt="Ninja Spinner Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Ninja Spinner Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Japonés</span>
+              <span class="badge badge-price">$130</span>
+            </div>
+            <div class="card-desc">30 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="4">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="5" tabindex="0" aria-label="Terastal Festival Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-ea5a6318-055d-43eb-adc5-3594a7de62dd.jpg" alt="Terastal Festival Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Terastal Festival Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Coreano</span>
+              <span class="badge badge-price">$120</span>
+            </div>
+            <div class="card-desc">10 paquetes por caja, 10 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="5">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="6" tabindex="0" aria-label="The Glory of Team Rocket Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-20e837d9-4128-4194-97e8-8f81619cc64d.jpg" alt="The Glory of Team Rocket Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">The Glory of Team Rocket Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Coreano</span>
+              <span class="badge badge-price">$90</span>
+            </div>
+            <div class="card-desc">30 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="6">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="7" tabindex="0" aria-label="Heat Wave Arena Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-3cb0b512-ffcf-4be9-bc76-a3b46e12d13e.jpg" alt="Heat Wave Arena Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Heat Wave Arena Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Coreano</span>
+              <span class="badge badge-price">$75</span>
+            </div>
+            <div class="card-desc">30 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="7">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="8" tabindex="0" aria-label="Mega - Ninja Spinner (Versión Coreana)">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-0f7167cb-e502-4214-849d-b41aadfb322e.jpg" alt="Mega - Ninja Spinner (Versión Coreana)" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Mega - Ninja Spinner (Versión Coreana)</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Coreano</span>
+              <span class="badge badge-price">$75</span>
+            </div>
+            <div class="card-desc">30 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="8">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="9" tabindex="0" aria-label="Mega Brave Booster Box (Versión Coreana)">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-954e7f7b-1285-4083-b3f0-4459f05ce01d.jpg" alt="Mega Brave Booster Box (Versión Coreana)" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Mega Brave Booster Box (Versión Coreana)</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Coreano</span>
+              <span class="badge badge-price">$75</span>
+            </div>
+            <div class="card-desc">30 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="9">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="10" tabindex="0" aria-label="Black Bolt Booster Box (Versión Coreana)">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-0169dacd-6547-4063-a36e-e4cee66e3347.jpg" alt="Black Bolt Booster Box (Versión Coreana)" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Black Bolt Booster Box (Versión Coreana)</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Coreano</span>
+              <span class="badge badge-price">$85</span>
+            </div>
+            <div class="card-desc">20 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="10">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="11" tabindex="0" aria-label="Inferno X Booster Box (Versión Coreana)">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-bca4a0aa-012f-4599-ab3c-5a2de4ce768c.jpg" alt="Inferno X Booster Box (Versión Coreana)" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Inferno X Booster Box (Versión Coreana)</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Coreano</span>
+              <span class="badge badge-price">$85</span>
+            </div>
+            <div class="card-desc">30 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="11">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="12" tabindex="0" aria-label="Black Crystal Blazing Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-bc35fe6e-1cc3-4d79-9083-efab0bdf6580.jpg" alt="Black Crystal Blazing Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Black Crystal Blazing Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Chino</span>
+              <span class="badge badge-price">$45</span>
+            </div>
+            <div class="card-desc">15 paquetes por caja, 5 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="12">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="13" tabindex="0" aria-label="Nine Colors Gathering Card Case Keychain Blind Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-8f1c8e1d-f0cf-4bb5-ac4a-6ea0524fe5be.jpg" alt="Nine Colors Gathering Card Case Keychain Blind Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Blind Box</div>
+            <div class="card-title">Nine Colors Gathering Card Case Keychain Blind Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Chino</span>
+              <span class="badge badge-price">$30</span>
+            </div>
+            <div class="card-desc">1 tarjeta promocional; 1 estuche con llavero; 1 paquete de refuerzo</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="13">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="14" tabindex="0" aria-label="Pikachu V-Union Gift Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-c244c443-0e5d-4ef9-a190-6702ed48f18a.jpg" alt="Pikachu V-Union Gift Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Colección Especial</div>
+            <div class="card-title">Pikachu V-Union Gift Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Chino</span>
+              <span class="badge badge-price">$45</span>
+            </div>
+            <div class="card-desc">2 slim booster pack de Primordial Arts (Blastoise y Venusaur); 1 tarjeta Jumbo especial de conexión de Pikachu; 1 soporte de exhibición temático de Pikachu</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="14">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="15" tabindex="0" aria-label="Brave Stars Card Case Keychain Blind Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-f33f3644-8c7c-454f-abdd-0803bc9f9d4e.jpg" alt="Brave Stars Card Case Keychain Blind Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Blind Box</div>
+            <div class="card-title">Brave Stars Card Case Keychain Blind Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Chino</span>
+              <span class="badge badge-price">$30</span>
+            </div>
+            <div class="card-desc">1 tarjeta promocional; 1 estuche con llavero; 1 paquete de refuerzo</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="15">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="16" tabindex="0" aria-label="First Partner 30th Aniversario">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-94c95fd8-1f7b-47db-9ac3-7ae18935097c.jpg" alt="First Partner 30th Aniversario" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Colección Especial</div>
+            <div class="card-title">First Partner 30th Aniversario</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Chino</span>
+              <span class="badge badge-price">$25</span>
+            </div>
+            <div class="card-desc">1 promo especial de ilustración rara; 1 estuche acrílico magnético; 1 slim booster pack</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="16">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="17" tabindex="0" aria-label="Gem Pack Vol. 4 Booster Box">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-48ffe159-364c-4e3e-980b-e799ba757cfd.jpg" alt="Gem Pack Vol. 4 Booster Box" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Gem Pack Vol. 4 Booster Box</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Chino</span>
+              <span class="badge badge-price">$40</span>
+            </div>
+            <div class="card-desc">18 paquetes por caja, 4 tarjetas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="17">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="18" tabindex="0" aria-label="First Partner S2 30th Aniversario">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-9b69beb4-fea3-41b1-9b1e-1b93fbe1328c.jpg" alt="First Partner S2 30th Aniversario" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Colección Especial</div>
+            <div class="card-title">First Partner S2 30th Aniversario</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Chino</span>
+              <span class="badge badge-price">$25</span>
+            </div>
+            <div class="card-desc">1 promocional de Charmander o Gastly; 1 hoja de pegatinas; 3 paquetes de Ascended Heroes</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="18">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="19" tabindex="0" aria-label="Ascended Heroes 2 Pack Blister">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-f44aa989-5d63-4050-a8d7-20d7f40546de.jpg" alt="Ascended Heroes 2 Pack Blister" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Blister</div>
+            <div class="card-title">Ascended Heroes 2 Pack Blister</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Español</span>
+              <span class="badge badge-price">$55</span>
+            </div>
+            <div class="card-desc">2 two packs blister.1 Larry two pack blister y 1 Erika two pack blister </div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="19">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="20" tabindex="0" aria-label="Phantasmal Flames Booster Bundle">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-904c79a9-d5bc-43a5-a887-ffb11f5d0995.jpg" alt="Phantasmal Flames Booster Bundle" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Bundle</div>
+            <div class="card-title">Phantasmal Flames Booster Bundle</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Español</span>
+              <span class="badge badge-price">$58</span>
+            </div>
+            <div class="card-desc">6 paquetes de Phantasmal Flames</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="20">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="21" tabindex="0" aria-label="Destined Rivals Booster Bundle">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-49262ded-06f7-4892-affd-758f03e22f69.jpg" alt="Destined Rivals Booster Bundle" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Bundle</div>
+            <div class="card-title">Destined Rivals Booster Bundle</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Español</span>
+              <span class="badge badge-price">$58</span>
+            </div>
+            <div class="card-desc">6 paquetes de Destined Rivals</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="21">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="22" tabindex="0" aria-label="First Partner Illustration Collection Series 1">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-1777a0e5-632b-4771-815c-a61bf67783b5.jpg" alt="First Partner Illustration Collection Series 1" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Colección Especial</div>
+            <div class="card-title">First Partner Illustration Collection Series 1</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Español</span>
+              <span class="badge badge-price">$55</span>
+            </div>
+            <div class="card-desc">1 booster pack de 3 cartas promo; 2 booster packs; 1 sticker</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="22">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="23" tabindex="0" aria-label="Ascended Heroes Premium Poster Collection Mega Lucario">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-aa6ec87b-abbb-4969-b85e-fb13accc55d3.jpg" alt="Ascended Heroes Premium Poster Collection Mega Lucario" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Colección Especial</div>
+            <div class="card-title">Ascended Heroes Premium Poster Collection Mega Lucario</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Español</span>
+              <span class="badge badge-price">$115</span>
+            </div>
+            <div class="card-desc">1 promocional de aluminio con Mega Lucario ex; 1 póster; 10 paquetes de Ascended Heroes</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="23">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="24" tabindex="0" aria-label="Ascended Heroes Caja de 10 Mini Latas">
+          <img class="card-img" src="https://cdn.phototourl.com/member/2026-07-14-b52d27a3-43e4-4ce5-94bf-adb5e898d03c.jpg" alt="Ascended Heroes Caja de 10 Mini Latas" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Mini Latas</div>
+            <div class="card-title">Ascended Heroes Caja de 10 Mini Latas</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Español</span>
+              <span class="badge badge-price">$200</span>
+            </div>
+            <div class="card-desc">2 paquetes por mini lata, 10 cartas por paquete</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="24">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="27" tabindex="0" aria-label="ONE PIECE CARD GAME: BOOSTER BOX OP-11">
+          <img class="card-img" src="https://cdn.phototourl.com/free/2026-08-06-e01f4520-cf12-43a0-a847-1362188782a5.webp" alt="ONE PIECE CARD GAME: BOOSTER BOX OP-11" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">ONE PIECE CARD GAME: BOOSTER BOX OP-11</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Japonés</span>
+              <span class="badge badge-price">$175</span>
+            </div>
+            <div class="card-desc">24 Sobres</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="27">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="28" tabindex="0" aria-label="ONE PIECE CARD GAME: BOOSTER BOX OP-13">
+          <img class="card-img" src="https://cdn.phototourl.com/free/2026-08-06-a5a1dc9a-d6e1-43ed-85f8-2e23dc3dca8d.webp" alt="ONE PIECE CARD GAME: BOOSTER BOX OP-13" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">ONE PIECE CARD GAME: BOOSTER BOX OP-13</div>
+            <div class="card-meta">
+              <span class="badge badge-lang">Japonés</span>
+              <span class="badge badge-price">$160</span>
+            </div>
+            <div class="card-desc">24 Sobres</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="28">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="25" tabindex="0" aria-label="Storm Emeralda">
+          <img class="card-img" src="https://cdn.phototourl.com/free/2026-08-06-eef3f88a-1396-4d0b-a7eb-17800d962a9b.webp" alt="Storm Emeralda" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">Storm Emeralda</div>
+            <div class="card-meta">
+              
+              <span class="badge badge-price">$235</span>
+            </div>
+            <div class="card-desc">30 Sobres</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="25">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="card" role="listitem" data-id="26" tabindex="0" aria-label="OP-07 500 Years in the Future">
+          <img class="card-img" src="https://cdn.phototourl.com/free/2026-08-06-226debde-8a1c-4c31-abfd-02b8650cbf6a.webp" alt="OP-07 500 Years in the Future" loading="lazy" onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">Booster Box</div>
+            <div class="card-title">OP-07 500 Years in the Future</div>
+            <div class="card-meta">
+              
+              <span class="badge badge-price">$110</span>
+            </div>
+            <div class="card-desc">24 Sobres</div>
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="26">🛒 Agregar al carrito</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<footer class="site-footer">
+  <button class="btn btn-primary btn-big" id="btnAddProduct" aria-label="Agregar nuevo producto">➕ Agregar Producto</button>
+  <div class="admin-tools" id="adminPanel" role="toolbar" aria-label="Panel de administración">
+    <button class="btn btn-secondary" id="btnExportCSV">Exportar CSV</button>
+    <button class="btn btn-secondary" id="btnImportCSV">Importar CSV</button>
+    <input type="file" id="importFile" accept=".csv" style="display:none" aria-hidden="true">
+    <button class="btn btn-success" id="btnDownloadCode">Descargar Código</button>
+  </div>
+  <button class="admin-link" id="btnOpenAdmin">🔐 Panel de Control</button>
+  <div class="footer-note">Fire Hits TCG · Envío Internacional Gratis</div>
+</footer>
+
+<div class="modal-overlay" id="adminModalOverlay" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+  <div class="modal modal-admin">
+    <h2 id="adminModalTitle">🔐 Panel de Control</h2>
+    <div class="form-group">
+      <label for="adminPassword">Contraseña</label>
+      <input type="password" id="adminPassword" placeholder="Ingresa la contraseña" aria-label="Contraseña del panel">
+      <div class="error" id="errorAdminPassword"></div>
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" id="btnAdminCancel">Cancelar</button>
+      <button type="button" class="btn btn-primary" id="btnAdminUnlock">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <h2 id="modalTitle">Agregar Producto</h2>
+    <form id="productForm" novalidate="">
+      <input type="hidden" id="editId" value="">
+      <div class="form-group">
+        <label for="productName">Nombre *</label>
+        <input type="text" id="productName" required="" aria-required="true">
+        <div class="error" id="errorName"></div>
+      </div>
+      <div class="form-group">
+        <label for="productCategory">Categoría *</label>
+        <select id="productCategory" required="" aria-required="true">
+          <option value="">Seleccionar...</option>
+          <option value="Booster Box">Booster Box</option>
+          <option value="Blind Box">Blind Box</option>
+          <option value="Colección Especial">Colección Especial</option>
+          <option value="Blister">Blister</option>
+          <option value="Bundle">Bundle</option>
+          <option value="Mini Latas">Mini Latas</option>
+          <option value="Accesorios">Accesorios</option>
+        </select>
+        <div class="error" id="errorCategory"></div>
+      </div>
+      <div class="form-group">
+        <label for="productLang">Idioma</label>
+        <select id="productLang">
+          <option value="">N/A</option>
+          <option value="Japonés">Japonés</option>
+          <option value="Coreano">Coreano</option>
+          <option value="Chino">Chino</option>
+          <option value="Español">Español</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="productPrice">Precio *</label>
+        <input type="text" id="productPrice" placeholder="Ej: 110,00" required="" aria-required="true" class="">
+        <div class="error" id="errorPrice"></div>
+      </div>
+      <div class="form-group">
+        <label for="productDesc">Descripción</label>
+        <textarea id="productDesc" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="productImage">Imagen (archivo)</label>
+        <input type="file" id="productImage" accept="image/png,image/jpeg,image/webp">
+      </div>
+      <div class="form-group">
+        <label for="productImageUrl">O imagen (URL)</label>
+        <input type="url" id="productImageUrl" placeholder="https://ejemplo.com/imagen.png" class="">
+        <div class="error" id="errorImageUrl"></div>
+      </div>
+      <div class="form-group">
+        <div id="imagePreview"></div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="btnCancel">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="btnSave">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="alert" aria-live="assertive">Producto agregado</div>
+
+<button class="cart-fab" id="cartFab" aria-label="Abrir carrito">🛒 <span class="cart-count" id="cartCount" style="display: none;">0</span></button>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+  <div class="cart-header">
+    <h2>🛒 Tu pedido</h2>
+    <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty"><p>Tu carrito está vacío.<br>Agrega tus Fire Hits favoritos para comenzar.</p></div></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">$0</span></div>
+    <button class="cart-checkout" id="cartCheckout">🛒 Finalizar Pedido por WhatsApp</button>
+    <button class="cart-clear" id="cartClear">Vaciar carrito</button>
+  </div>
+</aside>
+
+<script>
+(function() {
+  'use strict';
+
+  const STORAGE_KEY = 'firehits_catalogo';
+
+  function loadProducts() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try { return JSON.parse(saved); } catch(e) {}
+    }
+    return null;
+  }
+
+  function saveProducts() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(products.map(p => ({
+      id: p.id, name: p.name, category: p.category, lang: p.lang,
+      price: p.price, desc: p.desc, image: p.image, imageName: p.imageName
+    }))));
+  }
+
+let products = loadProducts() || [
+  {
+    "id": 2,
+    "name": "Mega Dream EX Booster Box",
+    "category": "Booster Box",
+    "lang": "Japonés",
+    "price": "110",
+    "desc": "10 packs por caja, 10 cartas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-b6c4a203-67eb-4c5e-8adb-293133b91c40.jpg",
+    "imageName": "2026-07-14-b6c4a203-67eb-4c5e-8adb-293133b91c40.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Abyss Eye Booster Box",
+    "category": "Booster Box",
+    "lang": "Japonés",
+    "price": "145",
+    "desc": "30 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-7e3715dd-b112-4f2c-a450-b8fda756f609.jpg",
+    "imageName": "2026-07-14-7e3715dd-b112-4f2c-a450-b8fda756f609.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Ninja Spinner Booster Box",
+    "category": "Booster Box",
+    "lang": "Japonés",
+    "price": "130",
+    "desc": "30 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-3c49f6f2-5dee-4a40-a0c4-4c59362de788.jpg",
+    "imageName": "2026-07-14-3c49f6f2-5dee-4a40-a0c4-4c59362de788.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Terastal Festival Booster Box",
+    "category": "Booster Box",
+    "lang": "Coreano",
+    "price": "120",
+    "desc": "10 paquetes por caja, 10 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-ea5a6318-055d-43eb-adc5-3594a7de62dd.jpg",
+    "imageName": "2026-07-14-ea5a6318-055d-43eb-adc5-3594a7de62dd.jpg"
+  },
+  {
+    "id": 6,
+    "name": "The Glory of Team Rocket Booster Box",
+    "category": "Booster Box",
+    "lang": "Coreano",
+    "price": "90",
+    "desc": "30 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-20e837d9-4128-4194-97e8-8f81619cc64d.jpg",
+    "imageName": "2026-07-14-20e837d9-4128-4194-97e8-8f81619cc64d.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Heat Wave Arena Booster Box",
+    "category": "Booster Box",
+    "lang": "Coreano",
+    "price": "75",
+    "desc": "30 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-3cb0b512-ffcf-4be9-bc76-a3b46e12d13e.jpg",
+    "imageName": "2026-07-14-3cb0b512-ffcf-4be9-bc76-a3b46e12d13e.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Mega - Ninja Spinner (Versión Coreana)",
+    "category": "Booster Box",
+    "lang": "Coreano",
+    "price": "75",
+    "desc": "30 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-0f7167cb-e502-4214-849d-b41aadfb322e.jpg",
+    "imageName": "2026-07-14-0f7167cb-e502-4214-849d-b41aadfb322e.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Mega Brave Booster Box (Versión Coreana)",
+    "category": "Booster Box",
+    "lang": "Coreano",
+    "price": "75",
+    "desc": "30 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-954e7f7b-1285-4083-b3f0-4459f05ce01d.jpg",
+    "imageName": "2026-07-14-954e7f7b-1285-4083-b3f0-4459f05ce01d.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Black Bolt Booster Box (Versión Coreana)",
+    "category": "Booster Box",
+    "lang": "Coreano",
+    "price": "85",
+    "desc": "20 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-0169dacd-6547-4063-a36e-e4cee66e3347.jpg",
+    "imageName": "2026-07-14-0169dacd-6547-4063-a36e-e4cee66e3347.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Inferno X Booster Box (Versión Coreana)",
+    "category": "Booster Box",
+    "lang": "Coreano",
+    "price": "85",
+    "desc": "30 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-bca4a0aa-012f-4599-ab3c-5a2de4ce768c.jpg",
+    "imageName": "2026-07-14-bca4a0aa-012f-4599-ab3c-5a2de4ce768c.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Black Crystal Blazing Booster Box",
+    "category": "Booster Box",
+    "lang": "Chino",
+    "price": "45",
+    "desc": "15 paquetes por caja, 5 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-bc35fe6e-1cc3-4d79-9083-efab0bdf6580.jpg",
+    "imageName": "2026-07-14-bc35fe6e-1cc3-4d79-9083-efab0bdf6580.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Nine Colors Gathering Card Case Keychain Blind Box",
+    "category": "Blind Box",
+    "lang": "Chino",
+    "price": "30",
+    "desc": "1 tarjeta promocional; 1 estuche con llavero; 1 paquete de refuerzo",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-8f1c8e1d-f0cf-4bb5-ac4a-6ea0524fe5be.jpg",
+    "imageName": "2026-07-14-8f1c8e1d-f0cf-4bb5-ac4a-6ea0524fe5be.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Pikachu V-Union Gift Box",
+    "category": "Colección Especial",
+    "lang": "Chino",
+    "price": "45",
+    "desc": "2 slim booster pack de Primordial Arts (Blastoise y Venusaur); 1 tarjeta Jumbo especial de conexión de Pikachu; 1 soporte de exhibición temático de Pikachu",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-c244c443-0e5d-4ef9-a190-6702ed48f18a.jpg",
+    "imageName": "2026-07-14-c244c443-0e5d-4ef9-a190-6702ed48f18a.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Brave Stars Card Case Keychain Blind Box",
+    "category": "Blind Box",
+    "lang": "Chino",
+    "price": "30",
+    "desc": "1 tarjeta promocional; 1 estuche con llavero; 1 paquete de refuerzo",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-f33f3644-8c7c-454f-abdd-0803bc9f9d4e.jpg",
+    "imageName": "2026-07-14-f33f3644-8c7c-454f-abdd-0803bc9f9d4e.jpg"
+  },
+  {
+    "id": 16,
+    "name": "First Partner 30th Aniversario",
+    "category": "Colección Especial",
+    "lang": "Chino",
+    "price": "25",
+    "desc": "1 promo especial de ilustración rara; 1 estuche acrílico magnético; 1 slim booster pack",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-94c95fd8-1f7b-47db-9ac3-7ae18935097c.jpg",
+    "imageName": "2026-07-14-94c95fd8-1f7b-47db-9ac3-7ae18935097c.jpg"
+  },
+  {
+    "id": 17,
+    "name": "Gem Pack Vol. 4 Booster Box",
+    "category": "Booster Box",
+    "lang": "Chino",
+    "price": "40",
+    "desc": "18 paquetes por caja, 4 tarjetas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-48ffe159-364c-4e3e-980b-e799ba757cfd.jpg",
+    "imageName": "2026-07-14-48ffe159-364c-4e3e-980b-e799ba757cfd.jpg"
+  },
+  {
+    "id": 18,
+    "name": "First Partner S2 30th Aniversario",
+    "category": "Colección Especial",
+    "lang": "Chino",
+    "price": "25",
+    "desc": "1 promocional de Charmander o Gastly; 1 hoja de pegatinas; 3 paquetes de Ascended Heroes",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-9b69beb4-fea3-41b1-9b1e-1b93fbe1328c.jpg",
+    "imageName": "2026-07-14-9b69beb4-fea3-41b1-9b1e-1b93fbe1328c.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Ascended Heroes 2 Pack Blister",
+    "category": "Blister",
+    "lang": "Español",
+    "price": "55",
+    "desc": "2 two packs blister.1 Larry two pack blister y 1 Erika two pack blister ",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-f44aa989-5d63-4050-a8d7-20d7f40546de.jpg",
+    "imageName": "2026-07-14-f44aa989-5d63-4050-a8d7-20d7f40546de.jpg"
+  },
+  {
+    "id": 20,
+    "name": "Phantasmal Flames Booster Bundle",
+    "category": "Bundle",
+    "lang": "Español",
+    "price": "58",
+    "desc": "6 paquetes de Phantasmal Flames",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-904c79a9-d5bc-43a5-a887-ffb11f5d0995.jpg",
+    "imageName": "2026-07-14-904c79a9-d5bc-43a5-a887-ffb11f5d0995.jpg"
+  },
+  {
+    "id": 21,
+    "name": "Destined Rivals Booster Bundle",
+    "category": "Bundle",
+    "lang": "Español",
+    "price": "58",
+    "desc": "6 paquetes de Destined Rivals",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-49262ded-06f7-4892-affd-758f03e22f69.jpg",
+    "imageName": "2026-07-14-49262ded-06f7-4892-affd-758f03e22f69.jpg"
+  },
+  {
+    "id": 22,
+    "name": "First Partner Illustration Collection Series 1",
+    "category": "Colección Especial",
+    "lang": "Español",
+    "price": "55",
+    "desc": "1 booster pack de 3 cartas promo; 2 booster packs; 1 sticker",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-1777a0e5-632b-4771-815c-a61bf67783b5.jpg",
+    "imageName": "2026-07-14-1777a0e5-632b-4771-815c-a61bf67783b5.jpg"
+  },
+  {
+    "id": 23,
+    "name": "Ascended Heroes Premium Poster Collection Mega Lucario",
+    "category": "Colección Especial",
+    "lang": "Español",
+    "price": "115",
+    "desc": "1 promocional de aluminio con Mega Lucario ex; 1 póster; 10 paquetes de Ascended Heroes",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-aa6ec87b-abbb-4969-b85e-fb13accc55d3.jpg",
+    "imageName": "2026-07-14-aa6ec87b-abbb-4969-b85e-fb13accc55d3.jpg"
+  },
+  {
+    "id": 24,
+    "name": "Ascended Heroes Caja de 10 Mini Latas",
+    "category": "Mini Latas",
+    "lang": "Español",
+    "price": "200",
+    "desc": "2 paquetes por mini lata, 10 cartas por paquete",
+    "image": "https://cdn.phototourl.com/member/2026-07-14-b52d27a3-43e4-4ce5-94bf-adb5e898d03c.jpg",
+    "imageName": "2026-07-14-b52d27a3-43e4-4ce5-94bf-adb5e898d03c.jpg"
+  },
+  {
+    "id": 25,
+    "name": "Storm Emeralda Booster Box",
+    "category": "Booster Box",
+    "lang": "Japonés",
+    "price": "235",
+    "desc": "30 Sobres",
+    "image": "https://cdn.phototourl.com/free/2026-08-06-eef3f88a-1396-4d0b-a7eb-17800d962a9b.webp",
+    "imageName": "2026-08-06-eef3f88a-1396-4d0b-a7eb-17800d962a9b.webp"
+  },
+  {
+    "id": 26,
+    "name": "OP-07 500 Years in the Future Booster Box",
+    "category": "Booster Box",
+    "lang": "Japonés",
+    "price": "135",
+    "desc": "24 Sobres",
+    "image": "https://cdn.phototourl.com/free/2026-08-06-226debde-8a1c-4c31-abfd-02b8650cbf6a.webp",
+    "imageName": "2026-08-06-226debde-8a1c-4c31-abfd-02b8650cbf6a.webp"
+  },
+  {
+    "id": 27,
+    "name": "ONE PIECE CARD GAME: BOOSTER BOX OP-11",
+    "category": "Booster Box",
+    "lang": "Japonés",
+    "price": "175",
+    "desc": "24 Sobres",
+    "image": "https://cdn.phototourl.com/free/2026-08-06-e01f4520-cf12-43a0-a847-1362188782a5.webp",
+    "imageName": "2026-08-06-e01f4520-cf12-43a0-a847-1362188782a5.webp"
+  },
+  {
+    "id": 28,
+    "name": "ONE PIECE CARD GAME: BOOSTER BOX OP-13",
+    "category": "Booster Box",
+    "lang": "Japonés",
+    "price": "160",
+    "desc": "24 Sobres",
+    "image": "https://cdn.phototourl.com/free/2026-08-06-a5a1dc9a-d6e1-43ed-85f8-2e23dc3dca8d.webp",
+    "imageName": "2026-08-06-a5a1dc9a-d6e1-43ed-85f8-2e23dc3dca8d.webp"
+  }
+];
+
+  products = products.filter(p => p.id !== 25 && p.id !== 26 && p.name !== 'Carpetas / Portafolios (varios diseños)' && p.name !== 'Combo Funda + Top Loader');
+
+  let nextId = 25;
+
+  const CART_KEY = 'firehits_cart';
+  const WHATSAPP_NUMBER = '584220408963';
+  let cart = {};
+  try { cart = JSON.parse(localStorage.getItem(CART_KEY)) || {}; } catch(e) { cart = {}; }
+
+  function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
+
+  function cartCount() {
+    return Object.values(cart).reduce((a, b) => a + b, 0);
+  }
+
+  function addToCart(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    cart[id] = (cart[id] || 0) + 1;
+    saveCart();
+    updateCartUI();
+    showToast(`${p.name} agregado al carrito`);
+  }
+
+  function changeQty(id, delta) {
+    if (!cart[id]) return;
+    cart[id] += delta;
+    if (cart[id] <= 0) delete cart[id];
+    saveCart();
+    updateCartUI();
+  }
+
+  function removeFromCart(id) {
+    delete cart[id];
+    saveCart();
+    updateCartUI();
+  }
+
+  function clearCart() {
+    cart = {};
+    saveCart();
+    updateCartUI();
+  }
+
+  function cartTotal() {
+    let total = 0;
+    Object.keys(cart).forEach(id => {
+      const p = products.find(x => x.id === Number(id));
+      if (!p) return;
+      const price = parseFloat(String(p.price).replace(',', '.'));
+      if (!isNaN(price)) total += price * cart[id];
+    });
+    return total;
+  }
+
+  function cartHasConsult() {
+    return Object.keys(cart).some(id => {
+      const p = products.find(x => x.id === Number(id));
+      return p && isNaN(parseFloat(String(p.price).replace(',', '.')));
+    });
+  }
+
+  function updateCartUI() {
+    const count = cartCount();
+    const badge = document.getElementById('cartCount');
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+    renderCart();
+  }
+
+  function renderCart() {
+    const itemsEl = document.getElementById('cartItems');
+    const ids = Object.keys(cart);
+    if (ids.length === 0) {
+      itemsEl.innerHTML = '<div class="cart-empty"><p>Tu carrito está vacío.<br>Agrega tus Fire Hits favoritos para comenzar.</p></div>';
+      document.getElementById('cartTotal').textContent = '$0';
+      return;
+    }
+    itemsEl.innerHTML = ids.map(id => {
+      const p = products.find(x => x.id === Number(id));
+      if (!p) return '';
+      const price = parseFloat(String(p.price).replace(',', '.'));
+      const priceLabel = isNaN(price) ? 'Consultar precio' : `$${p.price} c/u`;
+      return `
+        <div class="cart-item" data-id="${id}">
+          <img src="${escapeHtml(p.image || '')}" alt="${escapeHtml(p.name)}" loading="lazy"
+               onerror="this.src='';this.style.background='#1f1f1f';this.innerHTML='Sin imagen'">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${escapeHtml(p.name)}</div>
+            <div class="cart-item-price">${priceLabel}</div>
+          </div>
+          <div class="qty-controls">
+            <button class="qty-btn" data-dec="${id}" aria-label="Disminuir cantidad">−</button>
+            <span class="qty-num">${cart[id]}</span>
+            <button class="qty-btn" data-inc="${id}" aria-label="Aumentar cantidad">+</button>
+          </div>
+          <button class="cart-item-remove" data-rm="${id}" aria-label="Eliminar del carrito">✕</button>
+        </div>`;
+    }).join('');
+    const total = cartTotal();
+    document.getElementById('cartTotal').textContent = '$' + total.toFixed(2).replace(/\.00$/, '') + (cartHasConsult() ? ' + Consultar' : '');
+    itemsEl.querySelectorAll('[data-inc]').forEach(btn => {
+      btn.addEventListener('click', () => changeQty(parseInt(btn.dataset.inc), 1));
+    });
+    itemsEl.querySelectorAll('[data-dec]').forEach(btn => {
+      btn.addEventListener('click', () => changeQty(parseInt(btn.dataset.dec), -1));
+    });
+    itemsEl.querySelectorAll('[data-rm]').forEach(btn => {
+      btn.addEventListener('click', () => removeFromCart(parseInt(btn.dataset.rm)));
+    });
+  }
+
+  function checkoutWhatsApp() {
+    const ids = Object.keys(cart);
+    if (ids.length === 0) {
+      showToast('Tu carrito está vacío', true);
+      return;
+    }
+    const lines = ids.map(id => {
+      const p = products.find(x => x.id === Number(id));
+      if (!p) return '';
+      const price = parseFloat(String(p.price).replace(',', '.'));
+      const priceLabel = isNaN(price) ? 'Precio a consultar' : `$${price.toFixed(2).replace(/\.00$/, '')}`;
+      return `• ${p.name} × ${cart[id]} — ${priceLabel}`;
+    }).filter(Boolean).join('\n');
+    const total = cartTotal();
+    const totalLabel = '$' + total.toFixed(2).replace(/\.00$/, '') + (cartHasConsult() ? ' + consulta' : '');
+    const msg = `¡Hola Fire Hits TCG! Quiero hacer el siguiente pedido:\n\n${lines}\n\nTotal estimado: ${totalLabel}\n\n¡El envío internacional es gratis!`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('active');
+    document.getElementById('cartOverlay').classList.add('active');
+  }
+
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('active');
+    document.getElementById('cartOverlay').classList.remove('active');
+  }
+
+  const ADMIN_PASSWORD = '123';
+  let adminUnlocked = false;
+
+  function openAdminModal() {
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('errorAdminPassword').textContent = '';
+    document.getElementById('adminModalOverlay').classList.add('active');
+    document.getElementById('adminPassword').focus();
+  }
+
+  function closeAdminModal() {
+    document.getElementById('adminModalOverlay').classList.remove('active');
+  }
+
+  function unlockAdmin() {
+    const entered = document.getElementById('adminPassword').value.trim();
+    if (entered === ADMIN_PASSWORD) {
+      adminUnlocked = true;
+      closeAdminModal();
+      document.getElementById('adminPanel').classList.remove('hidden');
+      showToast('Panel de control desbloqueado');
+      render();
+    } else {
+      document.getElementById('errorAdminPassword').textContent = 'Contraseña incorrecta';
+    }
+  }
+
+  const catalogGrid = document.getElementById('catalogGrid');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const productForm = document.getElementById('productForm');
+  const editIdInput = document.getElementById('editId');
+  const productName = document.getElementById('productName');
+  const productCategory = document.getElementById('productCategory');
+  const productLang = document.getElementById('productLang');
+  const productPrice = document.getElementById('productPrice');
+  const productDesc = document.getElementById('productDesc');
+  const productImage = document.getElementById('productImage');
+  const productImageUrl = document.getElementById('productImageUrl');
+  const searchInput = document.getElementById('searchInput');
+  const filterCategory = document.getElementById('filterCategory');
+  const filterLang = document.getElementById('filterLang');
+  const toast = document.getElementById('toast');
+  toast.classList.remove('show');
+  toast._timer = null;
+  const statTotal = document.getElementById('statTotal');
+  const statCategories = document.getElementById('statCategories');
+  const statShowing = document.getElementById('statShowing');
+
+  function populateFilterOptions() {
+    const cats = new Set();
+    const langs = new Set();
+    products.forEach(p => {
+      if (p.category) cats.add(p.category);
+      if (p.lang) langs.add(p.lang);
+    });
+    const catSelect = filterCategory;
+    const langSelect = filterLang;
+    catSelect.innerHTML = '<option value="">Todas</option>';
+    langSelect.innerHTML = '<option value="">Todos</option>';
+    [...cats].sort().forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      catSelect.appendChild(opt);
+    });
+    [...langs].sort().forEach(l => {
+      const opt = document.createElement('option');
+      opt.value = l; opt.textContent = l;
+      langSelect.appendChild(opt);
+    });
+  }
+
+  function render() {
+    const search = searchInput.value.toLowerCase().trim();
+    const cat = filterCategory.value;
+    const lang = filterLang.value;
+
+    let filtered = products.filter(p => {
+      if (search && !p.name.toLowerCase().includes(search)) return false;
+      if (cat && p.category !== cat) return false;
+      if (lang && p.lang !== lang) return false;
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      catalogGrid.innerHTML = '<div class="empty-state"><h2>Sin resultados</h2><p>No se encontraron productos con los filtros seleccionados.</p></div>';
+    } else {
+      catalogGrid.innerHTML = filtered.map(p => `
+        <div class="card" role="listitem" data-id="${p.id}" tabindex="0" aria-label="${escapeHtml(p.name)}">
+          <img class="card-img" src="${escapeHtml(p.image || '')}" alt="${escapeHtml(p.name)}" loading="lazy"
+               onerror="this.src='';this.style.background='#1f1f1f';this.style.display='flex';this.innerHTML='Sin imagen'">
+          <div class="card-body">
+            <div class="card-category">${escapeHtml(p.category)}</div>
+            <div class="card-title">${escapeHtml(p.name)}</div>
+            <div class="card-meta">
+              ${p.lang ? `<span class="badge badge-lang">${escapeHtml(p.lang)}</span>` : ''}
+              <span class="badge badge-price">$${escapeHtml(p.price)}</span>
+            </div>
+            ${p.desc ? `<div class="card-desc">${escapeHtml(p.desc)}</div>` : ''}
+            <div class="card-actions">
+              <button class="btn btn-primary" data-cart="${p.id}">🛒 Agregar al carrito</button>
+              ${adminUnlocked ? `
+              <button class="btn btn-warning" data-edit="${p.id}">Editar</button>
+              <button class="btn btn-danger" data-delete="${p.id}">Eliminar</button>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    updateStats(filtered.length);
+    attachCardEvents();
+  }
+
+  function attachCardEvents() {
+    catalogGrid.querySelectorAll('.card').forEach(card => {
+      const id = parseInt(card.dataset.id);
+
+      card.addEventListener('click', function(e) {
+        if (e.target.closest('.card-actions')) return;
+        if (adminUnlocked) openEditModal(id);
+      });
+
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (e.target.closest('.card-actions')) return;
+          if (adminUnlocked) openEditModal(id);
+        }
+      });
+    });
+
+    catalogGrid.querySelectorAll('[data-edit]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        openEditModal(parseInt(this.dataset.edit));
+      });
+    });
+
+    catalogGrid.querySelectorAll('[data-cart]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        addToCart(parseInt(this.dataset.cart));
+      });
+    });
+
+    catalogGrid.querySelectorAll('[data-delete]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (confirm('¿Eliminar este producto?')) {
+          deleteProduct(parseInt(this.dataset.delete));
+        }
+      });
+    });
+  }
+
+  function updateStats(showing) {
+    statTotal.textContent = products.length;
+    statShowing.textContent = showing;
+    const cats = new Set(products.map(p => p.category).filter(Boolean));
+    statCategories.textContent = cats.size;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function openAddModal() {
+    modalTitle.textContent = 'Agregar Producto';
+    editIdInput.value = '';
+    productForm.reset();
+    productImageUrl.value = '';
+    productImage.value = '';
+    document.getElementById('imagePreview').innerHTML = '';
+    clearErrors();
+    modalOverlay.classList.add('active');
+    productName.focus();
+  }
+
+  function openEditModal(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    modalTitle.textContent = 'Editar Producto';
+    editIdInput.value = p.id;
+    productName.value = p.name || '';
+    productCategory.value = p.category || '';
+    productLang.value = p.lang || '';
+    productPrice.value = p.price || '';
+    productDesc.value = p.desc || '';
+    productImageUrl.value = (p.image && p.image.startsWith('http')) ? p.image : '';
+    productImage.value = '';
+    document.getElementById('imagePreview').innerHTML = p.image
+      ? `<img src="${escapeHtml(p.image)}" alt="Preview" style="max-width:100px;margin-top:0.5rem;border-radius:4px;">`
+      : '';
+    clearErrors();
+    modalOverlay.classList.add('active');
+    productName.focus();
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.form-group .error').forEach(el => el.textContent = '');
+    document.querySelectorAll('.form-group input, .form-group select').forEach(el => el.classList.remove('invalid'));
+    productImageUrl.classList.remove('invalid');
+  }
+
+  function validateForm() {
+    let valid = true;
+    clearErrors();
+
+    if (!productName.value.trim()) {
+      document.getElementById('errorName').textContent = 'El nombre es obligatorio';
+      productName.classList.add('invalid');
+      valid = false;
+    }
+
+    if (!productCategory.value) {
+      document.getElementById('errorCategory').textContent = 'Selecciona una categoría';
+      productCategory.classList.add('invalid');
+      valid = false;
+    }
+
+    if (!productPrice.value.trim()) {
+      document.getElementById('errorPrice').textContent = 'El precio es obligatorio';
+      productPrice.classList.add('invalid');
+      valid = false;
+    } else if (!/^\d{1,6}([,.]\d{1,2})?$/.test(productPrice.value.trim())) {
+      document.getElementById('errorPrice').textContent = 'Formato inválido (ej: 110,00)';
+      productPrice.classList.add('invalid');
+      valid = false;
+    }
+
+    const urlValue = productImageUrl.value.trim();
+    if (urlValue && !/^https?:\/\/.+\.(png|jpg|jpeg|webp|gif|svg)(\?.*)?$/i.test(urlValue) && !urlValue.startsWith('http')) {
+      document.getElementById('errorImageUrl').textContent = 'Ingresa una URL válida (https://...)';
+      productImageUrl.classList.add('invalid');
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  function saveProduct(e) {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    const editId = parseInt(editIdInput.value);
+    const name = productName.value.trim();
+    const category = productCategory.value;
+    const lang = productLang.value;
+    const price = productPrice.value.trim();
+    const desc = productDesc.value.trim();
+
+    let imagePath = '';
+    let imageName = '';
+
+    const urlValue = productImageUrl.value.trim();
+    if (urlValue) {
+      imagePath = urlValue;
+      imageName = urlValue.split('/').pop() || 'imagen.jpg';
+      finalizeSave(editId, name, category, lang, price, desc, imagePath, imageName);
+    } else if (productImage.files && productImage.files[0]) {
+      const file = productImage.files[0];
+      imageName = file.name;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        imagePath = ev.target.result;
+        finalizeSave(editId, name, category, lang, price, desc, imagePath, imageName);
+      };
+      reader.onerror = function() {
+        showToast('Error al leer la imagen', true);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      if (editId) {
+        const existing = products.find(p => p.id === editId);
+        if (existing) {
+          imagePath = existing.image;
+          imageName = existing.imageName;
+        }
+      }
+      finalizeSave(editId, name, category, lang, price, desc, imagePath, imageName);
+    }
+  }
+
+  function finalizeSave(editId, name, category, lang, price, desc, imagePath, imageName) {
+    if (editId) {
+      const idx = products.findIndex(p => p.id === editId);
+      if (idx !== -1) {
+        products[idx] = { ...products[idx], name, category, lang, price, desc, image: imagePath, imageName };
+      }
+      showToast('Producto actualizado');
+    } else {
+      products.push({
+        id: nextId++,
+        name,
+        category,
+        lang,
+        price,
+        desc,
+        image: imagePath,
+        imageName
+      });
+      showToast('Producto agregado');
+    }
+
+    saveProducts();
+    closeModal();
+    populateFilterOptions();
+    render();
+  }
+
+  function deleteProduct(id) {
+    products = products.filter(p => p.id !== id);
+    saveProducts();
+    populateFilterOptions();
+    render();
+    showToast('Producto eliminado');
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('active');
+  }
+
+  function showToast(msg, isError) {
+    toast.textContent = msg;
+    toast.className = 'toast' + (isError ? ' error' : '');
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  function exportCSV() {
+    const headers = ['ID', 'Nombre', 'Categoría', 'Idioma', 'Precio', 'Descripción', 'Imagen'];
+    const rows = products.map(p => [
+      p.id,
+      `"${(p.name || '').replace(/"/g, '""')}"`,
+      `"${(p.category || '').replace(/"/g, '""')}"`,
+      `"${(p.lang || '').replace(/"/g, '""')}"`,
+      `"${(p.price || '').replace(/"/g, '""')}"`,
+      `"${(p.desc || '').replace(/"/g, '""')}"`,
+      `"${(p.imageName || '').replace(/"/g, '""')}"`
+    ].join(','));
+    const csv = '\uFEFF' + headers.join(',') + '\n' + rows.join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'catalogo_firehits.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('CSV exportado');
+  }
+
+  function importCSV(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const text = e.target.result.replace(/^\uFEFF/, '');
+        const lines = text.split('\n').filter(l => l.trim());
+        if (lines.length < 2) { showToast('CSV vacío', true); return; }
+
+        const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+        const nameIdx = headers.indexOf('nombre');
+        const catIdx = headers.indexOf('categoría');
+        const langIdx = headers.indexOf('idioma');
+        const priceIdx = headers.indexOf('precio');
+        const descIdx = headers.indexOf('descripción');
+        const imgIdx = headers.indexOf('imagen');
+
+        if (nameIdx === -1 || catIdx === -1 || priceIdx === -1) {
+          showToast('CSV inválido: faltan columnas requeridas', true);
+          return;
+        }
+
+        let imported = 0;
+        for (let i = 1; i < lines.length; i++) {
+          const cols = parseCSVLine(lines[i]);
+          const name = (cols[nameIdx] || '').trim();
+          const category = (cols[catIdx] || '').trim();
+          if (!name || !category) continue;
+
+          products.push({
+            id: nextId++,
+            name,
+            category,
+            lang: langIdx !== -1 ? (cols[langIdx] || '').trim() : '',
+            price: priceIdx !== -1 ? (cols[priceIdx] || '').trim() : '',
+            desc: descIdx !== -1 ? (cols[descIdx] || '').trim() : '',
+            image: '',
+            imageName: imgIdx !== -1 ? (cols[imgIdx] || '').trim() : ''
+          });
+          imported++;
+        }
+
+        saveProducts();
+        populateFilterOptions();
+        render();
+        showToast(`${imported} producto(s) importado(s)`);
+      } catch (err) {
+        showToast('Error al importar CSV: ' + err.message, true);
+      }
+    };
+    reader.onerror = function() {
+      showToast('Error al leer el archivo', true);
+    };
+    reader.readAsText(file);
+  }
+
+  function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (inQuotes) {
+        if (ch === '"') {
+          if (i + 1 < line.length && line[i + 1] === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = false;
+          }
+        } else {
+          current += ch;
+        }
+      } else {
+        if (ch === '"') {
+          inQuotes = true;
+        } else if (ch === ',') {
+          result.push(current);
+          current = '';
+        } else {
+          current += ch;
+        }
+      }
+    }
+    result.push(current);
+    return result;
+  }
+
+  function downloadCode() {
+    const productsJson = JSON.stringify(products.map(p => ({
+      id: p.id, name: p.name, category: p.category, lang: p.lang,
+      price: p.price, desc: p.desc, image: p.image, imageName: p.imageName
+    })), null, 2);
+    const newHtml = document.documentElement.outerHTML.replace(
+      /let products = loadProducts\(\) \|\| \[[\s\S]*?\n  \];/,
+      `let products = loadProducts() || ${productsJson};`
+    );
+    const blob = new Blob(['\uFEFF' + newHtml], { type: 'text/html;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'catalogo_firehits.html';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Código descargado - incluye tus cambios');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+      closeModal();
+    }
+    if (e.key === 'Escape' && document.getElementById('cartDrawer').classList.contains('active')) {
+      closeCart();
+    }
+    if (e.key === 'Escape' && document.getElementById('adminModalOverlay').classList.contains('active')) {
+      closeAdminModal();
+    }
+  });
+
+  modalOverlay.addEventListener('click', function(e) {
+    if (e.target === modalOverlay) closeModal();
+  });
+
+  document.getElementById('cartFab').addEventListener('click', openCart);
+  document.getElementById('cartClose').addEventListener('click', closeCart);
+  document.getElementById('cartOverlay').addEventListener('click', closeCart);
+  document.getElementById('cartCheckout').addEventListener('click', checkoutWhatsApp);
+  document.getElementById('cartClear').addEventListener('click', clearCart);
+
+  document.getElementById('btnOpenAdmin').addEventListener('click', openAdminModal);
+  document.getElementById('btnAdminCancel').addEventListener('click', closeAdminModal);
+  document.getElementById('btnAdminUnlock').addEventListener('click', unlockAdmin);
+  document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') unlockAdmin();
+  });
+  document.getElementById('adminModalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAdminModal();
+  });
+
+  document.getElementById('btnAddProduct').addEventListener('click', openAddModal);
+  document.getElementById('btnExportCSV').addEventListener('click', exportCSV);
+  document.getElementById('btnImportCSV').addEventListener('click', function() {
+    document.getElementById('importFile').click();
+  });
+  document.getElementById('importFile').addEventListener('change', function(e) {
+    if (e.target.files && e.target.files[0]) {
+      importCSV(e.target.files[0]);
+      e.target.value = '';
+    }
+  });
+  document.getElementById('btnDownloadCode').addEventListener('click', downloadCode);
+  document.getElementById('btnCancel').addEventListener('click', closeModal);
+  productForm.addEventListener('submit', saveProduct);
+
+  searchInput.addEventListener('input', render);
+  filterCategory.addEventListener('change', render);
+  filterLang.addEventListener('change', render);
+
+  populateFilterOptions();
+  render();
+  updateCartUI();
+})();
+</script>
+
+
+
+</body></html>
